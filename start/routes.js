@@ -34,13 +34,11 @@ Route.group(() => {
   //Muestra los pines ocupados de la raspberry pi
   Route.get('/pines','DeviceController.lista_pines')
 
-
   //Agregar un Dato
-  Route.post('/dato','DatumController.addDato')
+  Route.post('/data','DatumController.addDato')
   //Mostrar ultimos 5 datos
   Route.post('/show/last','DatumController.showLast5')
 
-  
   //Mostrar solicitudes de invitados pendientes
   Route.get('/pending/invited','InvitedController.invitados_pendientes')
   //Aceptar o negar para ser invitado
@@ -51,7 +49,6 @@ Route.group(() => {
   Route.delete('/delete/invited','InvitedController.delete')
   //Actualizar Invitado
   Route.put('/invited','InvitedController.actualizar_invitado')
-
 
   //Muestra el qr del usario, para que se puedan unir los invitados
   Route.get('/qr','UserController.qr')
