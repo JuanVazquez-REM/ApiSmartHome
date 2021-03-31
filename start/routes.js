@@ -13,7 +13,7 @@ Route.post('/register/invited','InvitedController.registro')
 Route.post('/login/invited','InvitedController.login')
 
 //check token
-Route.get('/check','AuthController.check')
+Route.get('/check','AuthController.check')//
 
 Route.group(() => {
   
