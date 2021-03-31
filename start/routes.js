@@ -1,5 +1,6 @@
 'use strict'
 const Route = use('Route')
+Route.get('/', () => 'Hello Adonis')
 
 //Registro User
 Route.post('/login','AuthController.login')
