@@ -1,6 +1,6 @@
 'use strict'
 const Route = use('Route')
-Route.get('/', () => 'Hello Adonis and amazon')
+Route.get('/', () => 'Hello Adonis and thanks aws.')
 
 //Registro User
 Route.post('/login','AuthController.login')
