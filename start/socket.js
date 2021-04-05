@@ -15,4 +15,8 @@
 
 const Ws = use('Ws')
 //Channel Temperatura
-Ws.channel('wsrasp','RaspberryController')
+Ws.channel('wstemp','TemperaturaController')
+//Channel Humedad
+Ws.channel('wshum','HumedadController')
+//Channel Focos
+Ws.channel('wsfoco','FocoController')
