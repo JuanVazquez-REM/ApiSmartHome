@@ -71,6 +71,10 @@ class DeviceController {
         )
     }
 
+    async offAlarma({}){
+        
+    }
+
     async focos({response}){
         const focos = await Device.where("tipo","Foco").fetch()
         return response.status(200).json(
@@ -93,8 +97,14 @@ class DeviceController {
     }
 
     async lista_pines({response}){
-        const devices = await Device.all()
-        return devices
+        var pines = [2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]
+        const devices = await Device.select('pin').first()
+        /* for (const index in devices) {
+            let value = devices[index];
+            console.log(value["pin"])
+        } */
+        console.log(devices.pin)
+        return response.status(200).json(devices)
     }
 
     async actualizar_dispositivo({request,response}){
