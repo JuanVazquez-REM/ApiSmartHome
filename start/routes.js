@@ -32,7 +32,7 @@ Route.group(() => {
   //Actualizar dispositivo
   Route.put('/device','DeviceController.actualizar_dispositivo')
   //Apagar alarma
-  Route.get('/Alarm','DeviceController.offAlarma')
+  Route.get('/alarm','DeviceController.offAlarma')
 
   //Muestra los pines ocupados de la raspberry pi
   Route.get('/pines','DeviceController.lista_pines')
