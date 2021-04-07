@@ -55,4 +55,5 @@ Route.group(() => {
 
   //Muestra el qr del usario, para que se puedan unir los invitados
   Route.get('/qr','UserController.qr')
-}).middleware(['auth'])
+})
+//.middleware(['auth'])
