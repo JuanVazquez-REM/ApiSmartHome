@@ -14,15 +14,15 @@ class AuthController {
         const validation = await validate(request.all(), rules)
         
         if(validation.fails()){
-            return validation.messages()
+            return response.status(400).json(validation.messages())
         } else {
             try {
                 const {email, password} = request.only(['email','password'])
                 const token = await auth.attempt(email,password)
 
-                return response.status(200).json({
-                    message: token
-                })
+                return response.status(200).json(
+                    token
+                )
             } catch (error) {
                 return response.status(400).json({
                     message: error

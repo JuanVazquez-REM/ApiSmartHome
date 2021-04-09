@@ -12,7 +12,7 @@ class DatumController {
 
         const validation = await validate(request.all(), rules)
         if(validation.fails()){
-            return validation.messages()
+            return response.status(400).json(validation.messages())
         } else {
             const data = await Datum.count()
             const id = data + 1
@@ -44,7 +44,7 @@ class DatumController {
 
         const validation = await validate(request.all(), rules)
         if(validation.fails()){
-            return validation.messages()
+            return response.status(400).json(validation.messages())
         } else {
             
                 const data = request.only(['dispositivo_id'])
@@ -54,7 +54,6 @@ class DatumController {
                     message: "Lista de los ultimos 5 registros",
                     registros: regitros
                 })
-           
         }
     }
 

@@ -13,7 +13,7 @@ class DeviceController {
 
         const validation = await validate(request.all(), rules)
         if(validation.fails()){
-            return validation.messages()
+            return response.status(400).json(validation.messages())
         } else {
             const data = await Device.count()
             const id = data + 1
@@ -47,7 +47,7 @@ class DeviceController {
 
         const validation = await validate(request.all(), rules)
         if(validation.fails()){
-            return validation.messages()
+            return response.status(400).json(validation.messages())
         } else {
             try {
                 const data = request.only(['dispositivo_id'])
@@ -116,7 +116,7 @@ class DeviceController {
 
         const validation = await validate(request.all(), rules)
         if(validation.fails()){
-            return validation.messages()
+            return response.status(400).json(validation.messages())
         } else {
             try {
                 const {dispositivo_id,nombre,descripcion} = request.only(['dispositivo_id','nombre','descripcion'])

@@ -20,7 +20,7 @@ class UserController {
         const validation = await validate(request.all(), rules)
         
         if(validation.fails()){
-            return validation.messages()
+            return response.status(400).json(validation.messages())
         } else {
             const {nombre,apellido,email,password} = request.only(['nombre','apellido','email','password'])
 
