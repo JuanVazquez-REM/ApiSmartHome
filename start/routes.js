@@ -15,6 +15,13 @@ Route.post('/login/invited','InvitedController.login')
 //check token
 Route.get('/check','AuthController.check')//
 
+//Muestra todo los focos
+Route.get('/lights','DeviceController.focos')
+//Muestra todo los sensores de temperatura
+Route.get('/sensors/temperature','DeviceController.sensores_temperatura')
+//Muestra todo los sensores de humedad
+Route.get('/sensors/humidity','DeviceController.sensores_humedad')
+
 Route.group(() => {
   
   //Agregar nuevo dispositivo
@@ -49,7 +56,7 @@ Route.group(() => {
   //Ver invitados
   Route.get('/invited','InvitedController.invitados')
   //Eliminar Invitado
-  Route.delete('/delete/invited','InvitedController.delete')
+  Route.post('/delete/invited','InvitedController.delete')
   //Actualizar Invitado
   Route.put('/invited','InvitedController.actualizar_invitado')
 

@@ -50,7 +50,7 @@ class InvitedController {
 
     async delete({request,response}){
         const rules = {
-            invitado_id: 'required|integer'
+            nombre: 'required|string'
         }
 
         const validation = await validate(request.all(), rules)
@@ -58,8 +58,8 @@ class InvitedController {
             return response.status(400).json(validation.messages())
         } else {
             try {
-                const data  = request.only(['invitado_id'])
-                await Invited.where('invitado_id', data.invitado_id).delete()
+                const data  = request.only(['nombre'])
+                await Invited.where('nombre', data.nombre).delete()
                 return response.status(200).json({
                     message: "Invitado eliminado correctamente"
                 })
@@ -138,9 +138,8 @@ class InvitedController {
         }
     }
 
-    async solicitud_invitado({request,response}){
+    async solicitud_invitado({request,response,auth}){
         const rules = {
-            is_accept: 'required|boolean',
             invitado_id: 'required|integer',
         }
 
@@ -149,10 +148,10 @@ class InvitedController {
             return response.status(400).json(validation.messages())
         } else {
             try {
-                const {is_accept,invitado_id} = request.only(['is_accept','invitado_id'])
-                const invitado = await Invited.where('invitado_id',invitado_id).first()
+                const {invitado_id} = request.only(['invitado_id'])
+                const invitado = await Invited.where('invitado_id',invitado_id).where('user_id',auth.user.user_id).first()
 
-                invitado.is_accept = is_accept
+                invitado.is_accept = true
                 invitado.save()
                 
                 return response.status(200).json({
@@ -169,9 +168,9 @@ class InvitedController {
     async invitados({ response, auth}){
         try {
             const invitados = await Invited.where('user_id',auth.user.user_id).where('is_accept',true).fetch()
-            return response.status(200).json({
-                message: invitados
-            })
+            return response.status(200).json(
+                invitados
+            )
         } catch (error) {
             return response.status(400).json({
                 message: error

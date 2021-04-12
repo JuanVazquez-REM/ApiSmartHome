@@ -39,7 +39,8 @@ class AuthController {
 
             return response.status(200).json({
                 status: true,
-                message: "Token valido"
+                message: "Token valido",
+                user: auth.user
             })
             
         } catch (error) {
