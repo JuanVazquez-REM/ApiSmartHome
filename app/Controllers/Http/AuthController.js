@@ -1,6 +1,7 @@
 'use strict'
 
 const {validate} = use('Validator') 
+const User = use('App/Models/User')
 
 class AuthController {
 
@@ -13,17 +14,18 @@ class AuthController {
 
         const validation = await validate(request.all(), rules)
         
+
         if(validation.fails()){
             return response.status(400).json(validation.messages())
         } else {
             try {
                 const {email, password} = request.only(['email','password'])
                 const token = await auth.attempt(email,password)
+                const user = await User.where('email',email).first()
 
                 return response.status(200).json({
                     token: token,
-                    user: auth.user
-
+                    user: user
                 })
                 
             } catch (error) {
