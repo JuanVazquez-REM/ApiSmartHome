@@ -20,9 +20,12 @@ class AuthController {
                 const {email, password} = request.only(['email','password'])
                 const token = await auth.attempt(email,password)
 
-                return response.status(200).json(
-                    token
-                )
+                return response.status(200).json({
+                    token: token,
+                    user: auth.user
+
+                })
+                
             } catch (error) {
                 return response.status(400).json({
                     message: error
