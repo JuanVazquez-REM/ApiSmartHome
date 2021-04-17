@@ -1,5 +1,5 @@
 'use strict'
-const Device = use('App/models/Device')
+const Device = require('App/models/Device')
 const {validate} = use('Validator') 
 class DeviceController {
 
@@ -52,7 +52,7 @@ class DeviceController {
             try {
                 const data = request.only(['dispositivo_id'])
                 await Device.where('dispositivo_id', data.dispositivo_id).delete()
-
+                
                 return response.status(200).json({
                     message: "Dispositivo eliminado correctamente"
                 })
@@ -83,7 +83,7 @@ class DeviceController {
     }
 
     async sensores_temperatura({response}){
-        const sensores = await Device.where("tipo","Temperatura").fetch()
+        const sensores = await Device.where("tipo","Temperatura").first()
         return response.status(200).json(
             sensores
         )
@@ -98,13 +98,18 @@ class DeviceController {
 
     async lista_pines({response}){
         var pines = [2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]
-        const devices = await Device.select('pin').first()
-        /* for (const index in devices) {
-            let value = devices[index];
-            console.log(value["pin"])
-        } */
-        console.log(devices.pin)
-        return response.status(200).json(devices)
+        const devices = await Device.select('pin').fetch()
+        for (let i = 0; i < devices.rows.length; i++) {
+            this.removeItemFromArr(pines,devices.rows[i].pin)
+            console.log(devices.rows[i].pin)
+        }
+        return response.status(200).json(pines)
+    }
+    async removeItemFromArr ( arr, item ) {
+        var i = arr.indexOf( item );
+        if ( i !== -1 ) {
+            await arr.splice( i, 1 );
+        }
     }
 
     async actualizar_dispositivo({request,response}){

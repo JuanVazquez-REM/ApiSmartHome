@@ -27,7 +27,7 @@ Route.group(() => {
   //Agregar nuevo dispositivo
   Route.post('/device','DeviceController.addDevice')
   //Eliminar dispositivo
-  Route.delete('/delete/device','DeviceController.delete')
+  Route.post('/delete/device','DeviceController.delete')
   //Muestra todo los dispositivos
   Route.get('/devices','DeviceController.index')
   //Muestra todo los focos
