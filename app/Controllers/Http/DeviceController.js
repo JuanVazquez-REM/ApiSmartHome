@@ -1,5 +1,5 @@
 'use strict'
-const Device = require('App/models/Device')
+const Device = use('App/models/Device')
 const {validate} = use('Validator') 
 class DeviceController {
 
