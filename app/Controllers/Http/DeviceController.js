@@ -1,5 +1,5 @@
 'use strict'
-const Device = use('App/models/Device')
+const Device = use('App/Models/Device')
 const {validate} = use('Validator') 
 class DeviceController {
 
