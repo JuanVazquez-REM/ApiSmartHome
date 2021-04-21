@@ -18,24 +18,26 @@ Route.get('/check','AuthController.check')//
 //Muestra todo los focos
 Route.get('/lights','DeviceController.focos')
 //Muestra todo los sensores de temperatura
-Route.get('/sensors/temperature','DeviceController.sensores_temperatura')
+/* Route.get('/sensors/temperature','DeviceController.sensores_temperatura')
 //Muestra todo los sensores de humedad
-Route.get('/sensors/humidity','DeviceController.sensores_humedad')
+Route.get('/sensors/humidity','DeviceController.sensores_humedad') */
 
 Route.group(() => {
   
   //Agregar nuevo dispositivo
   Route.post('/device','DeviceController.addDevice')
+  //Muestra un dispositivo
+  Route.post('/data/device','DeviceController.dataDevice')/////////////
   //Eliminar dispositivo
   Route.post('/delete/device','DeviceController.delete')
   //Muestra todo los dispositivos
   Route.get('/devices','DeviceController.index')
   //Muestra todo los focos
   Route.get('/lights','DeviceController.focos')
-  //Muestra todo los sensores de temperatura
+/*   //Muestra todo los sensores de temperatura
   Route.get('/sensors/temperature','DeviceController.sensores_temperatura')
   //Muestra todo los sensores de humedad
-  Route.get('/sensors/humidity','DeviceController.sensores_humedad')
+  Route.get('/sensors/humidity','DeviceController.sensores_humedad') */
   //Actualizar dispositivo
   Route.put('/device','DeviceController.actualizar_dispositivo')
   //Apagar alarma

@@ -9,6 +9,7 @@ class DeviceController {
             nombre: 'required|string',
             descripcion: 'required|string',
             pin: 'required|integer',
+            modelo: 'string'
         }
 
         const validation = await validate(request.all(), rules)
@@ -19,13 +20,15 @@ class DeviceController {
             const id = data + 1
 
             try {
-                const {tipo,nombre,descripcion,pin} = request.only(['tipo','nombre','descripcion','pin'])
+                const {tipo,nombre,descripcion,pin,modelo} = request.only(['tipo','nombre','descripcion','pin','modelo'])
+
                 const dispositivo = await Device.create({
                     dispositivo_id: id,
                     tipo: tipo,
                     nombre: nombre,
                     descripcion: descripcion,
-                    pin: pin
+                    pin: pin,
+                    modelo: String(modelo).toUpperCase()
                 })
 
                 return response.status(201).json({
@@ -64,8 +67,34 @@ class DeviceController {
         }
     }
 
+    async dataDevice({request,response}){
+
+        const rules = {
+            dispositivo_id: 'required|integer'
+        }
+
+        const validation = await validate(request.all(), rules)
+        
+        if(validation.fails()){
+            return response.status(400).json(validation.messages())
+        } else {
+            try {
+                const {dispositivo_id} = request.only(['dispositivo_id'])
+                const dispositivo = await Device.where('dispositivo_id', dispositivo_id).first()
+                return response.status(200).json(
+                    dispositivo
+                )
+            } catch (error) {
+                return response.status(400).json({
+                    message: error
+                })
+            }
+        }
+    }
+
     async index({response}){
         const dispositivos = await Device.all()
+        console.log("hola".toLowerCase())
         return response.status(200).json(
             dispositivos
         )
