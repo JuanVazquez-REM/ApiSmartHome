@@ -7,7 +7,7 @@ class DatumController {
     async addDato({request,response}){
         const rules = {
             dispositivo_id: 'required|integer',
-            dato: 'required|string'
+            dato: 'required'
         }
 
         const validation = await validate(request.all(), rules)
