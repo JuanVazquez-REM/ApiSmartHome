@@ -49,7 +49,7 @@ Route.group(() => {
   //Agregar un Dato
   Route.post('/data','DatumController.addDato')
   //Mostrar ultimos 5 datos
-  Route.post('/show/last','DatumController.showLast5')
+  Route.post('/show/last','DatumController.showLast')
 
   //Mostrar solicitudes de invitados pendientes
   Route.get('/pending/invited','InvitedController.invitados_pendientes')

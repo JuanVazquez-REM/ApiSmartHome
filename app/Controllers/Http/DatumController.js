@@ -37,9 +37,10 @@ class DatumController {
         }
     }
 
-    async showLast5({request,response}){
+    async showLast({request,response}){
         const rules = {
             dispositivo_id: 'required|integer',
+            limit: 'required|integer'
         }
 
         const validation = await validate(request.all(), rules)
@@ -47,11 +48,11 @@ class DatumController {
             return response.status(400).json(validation.messages())
         } else {
             
-                const data = request.only(['dispositivo_id'])
-                const regitros = await Datum.where('dispositivo_id',data.dispositivo_id).sort({ created_at: -1 }).limit(5).fetch()
+                const data = request.only(['dispositivo_id','limit'])
+                const regitros = await Datum.where('dispositivo_id',data.dispositivo_id).sort({ created_at: -1 }).limit(data.limit).fetch()
 
                 return response.status(200).json({
-                    message: "Lista de los ultimos 5 registros",
+                    message: "Lista de los ultimos registros",
                     registros: regitros
                 })
         }
