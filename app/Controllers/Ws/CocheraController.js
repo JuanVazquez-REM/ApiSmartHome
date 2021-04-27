@@ -1,16 +1,16 @@
 'use strict'
 
-class FocoController {
+class CocheraController {
   constructor ({ socket, request }) {
     this.socket = socket
     this.request = request
   }
 
   onMessage(data){
-    console.log("Chat de focos")
+    console.log("Chat de Cochera")
     this.socket.broadcastToAll("message",data)
     console.log(data)
   }
 }
 
-module.exports = FocoController
+module.exports = CocheraController

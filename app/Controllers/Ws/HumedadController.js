@@ -7,7 +7,8 @@ class HumedadController {
   }
 
   onMessage(data){
-    this.socket.broadcast("message",data)
+    console.log("Chat de humedad")
+    this.socket.broadcastToAll("message",data)
     console.log(data)
   }
 }

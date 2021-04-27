@@ -20,3 +20,5 @@ Ws.channel('wstemp','TemperaturaController')
 Ws.channel('wshum','HumedadController')
 //Channel Focos
 Ws.channel('wsfoco','FocoController')
+//Channel Cochera
+Ws.channel('wscochera','CocheraController')
