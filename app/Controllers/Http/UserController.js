@@ -25,7 +25,7 @@ class UserController {
             const {nombre,apellido,email,password} = request.only(['nombre','apellido','email','password'])
 
             var crypto = require("crypto");
-            var pin = crypto.randomBytes(8).toString('hex');
+            var pin = crypto.randomBytes(2).toString('hex');
             
             try {
                 const user = await User.create({
